@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Development Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff10" points="0,1000 1000,800 1000,1000"/><polygon fill="%23ffffff05" points="0,800 1000,600 1000,800 0,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Activity Cards */
+        .activities-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .section-title2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: black;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .activity-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .activity-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .activity-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            flex: 1;
+        }
+
+        .activity-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .evidence-section,
+        .summary-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .evidence-label,
+        .section-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .evidence-placeholder {
+            background: #f0f4f8;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .evidence-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .evidence-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .evidence-images img {
+            max-width: 100%;
+            height: auto;
+            flex: 1 1 300px;
+            object-fit: cover;
+            /* Ensures image fills container while maintaining aspect ratio */
+            image-rendering: -webkit-optimize-contrast;
+            /* Improves image clarity on WebKit browsers */
+            image-rendering: crisp-edges;
+            /* Helps maintain sharp edges */
+        }
+
+
+        .activity-summary {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .activity-reflection {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            font-style: italic;
+        }
+
+        .reflection-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Reflection Section */
+        .reflection-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1c2833 0%, #2e86c1 100%);
+            color: white;
+        }
+
+
+        .reflection-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .reflection-card {
+            background: rgba(0, 0, 0, 0.4);
+            /* darker than current */
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .reflection-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .star-section {
+            margin: 2rem 0;
+        }
+
+        .star-title {
+            font-weight: 600;
+            color: #2d9cdb;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .star-content {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: #f0f0f0;
+            /* Or use #ffffff for full white */
+            font-weight: 500;
+        }
+
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .reflection-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#reflection">Reflection</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Professional Development Portfolio</h1>
+            <p>A comprehensive journey through my industry engagement and professional growth over the last few months
+            </p>
+            <a href="#activities" class="cta-button">Explore My Journey</a>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">11</span>
+                    <span class="stat-label">Professional Activities</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">40+</span>
+                    <span class="stat-label">Hours of Engagement</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Career Services Sessions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Career Ready</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="activities" class="activities-section">
+        <div class="container">
+            <h2 class="section-title2 fade-in">Professional Activities & Experiences</h2>
+
+            <div class="activities-grid">
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">🐍</div>
+                        <h3 class="activity-title">Activity 1: Tech Talks – Clean Architecture in Python: Why, When, and
+                            How</h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 March 27, 2025 (Thursday)</div>
+                        <div class="meta-item">🕕 6:00 PM – 8:00 PM</div>
+                        <div class="meta-item">📍 University of Adelaide, Ingkarni Wardli Building, Room B17</div>
+                    </div>
+
+                    <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-images">
+                            <img src="images/Picture1.png" alt="...">
+                            <img src="images/Picture2.png" alt="...">
+                        </div>
+                    </div>
+
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            I attended a technical meetup organised by Python Adelaide titled "Clean Architecture in
+                            Python: Why, When, and How," presented by Matt Magin, a staff+ software engineer
+                            specialising in distributed backend systems. The session covered the principles and
+                            rationale for clean architecture, clarified common misconceptions, and provided actionable
+                            implementation strategies in Python projects. Matt discussed how clean architecture ensures
+                            maintainability and scalability, using real-world examples from his experience. This event
+                            enhanced my awareness of best practices in software engineering and provided me networking
+                            opportunities with fellow students and industry professionals.
+                        </p>
+                    </div>
+
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        <p>Participating in this tech talk gave me deeper insights into how industry professionals
+                            structure and scale real applications using Clean Architecture. It emphasised the balance
+                            between necessary organisation and over-complication, which is directly relevant to my
+                            coursework and future career in IT. Engaging with the speaker and other attendees also
+                            strengthened my confidence in asking technical questions and discussing software design
+                            decisions.</p>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">⚡</div>
+                        <h3 class="activity-title">Activity 2: Tech Talks – Orchestrating Data Pipelines with Dagster
+                        </h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 May 8, 2025 (Thursday)</div>
+                        <div class="meta-item">🕕 6:00 PM – 8:00 PM</div>
+                        <div class="meta-item">📍 University of Adelaide, Ingkarni Wardli Building, Room B17</div>
+                    </div>
+
+                    <!-- <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-images">
+                            <img src="images/Picture3.png" alt="...">
+                            <img src="images/Picture4.png" alt="...">
+                        </div>
+                    </div> -->
+
+                    <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-section">
+                            <div class="evidence-images">
+                                <img src="images/Picture3.png" alt="...">
+                                <img src="images/Picture4.png" alt="...">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            I attended a technical session, "Orchestrating Data Pipelines with Dagster," as part of the
+                            Adelaide Pythonistas meetups. The speaker, Theo Visan (Data Engineering Technical Lead at
+                            MaxMine), delivered a comprehensive talk on building robust data pipelines using Dagster. He
+                            shared practical strategies for creating maintainable, observable, and testable workflows in
+                            Python, as well as personal lessons learned from scaling data platforms with tools like
+                            Snowflake, dbt, AWS, and Kubernetes. The event was sponsored by Agile Insights.
+                        </p>
+                    </div>
+
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        <p>This tech talk expanded my understanding of modern data engineering best practices and the
+                            value of workflow orchestration tools like Dagster in real-world production environments.
+                            Hearing Theo's real-life experiences in the industry offered valuable insights into the
+                            day-to-day challenges data engineers face, especially with messy datasets and scalable
+                            platform demands. Networking during and after the event also helped me connect with
+                            professionals and students interested in data engineering, increasing my awareness of
+                            industry trends and career opportunities.</p>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">❄️</div>
+                        <h3 class="activity-title">Activity 3: Hands-On Essentials: Data Warehouse with Snowflake</h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 May 9, 2025 (Friday)</div>
+                        <div class="meta-item">🌐 Online – Snowflake Hands-On Badge Workshop</div>
+                    </div>
+
+                    <div class="evidence-section">
+                        <div class="evidence-images">
+                            <img src="images/Picture5.png" alt="...">
+                        </div>
+                        <p><strong>Link to certificate:</strong> <a
+                                href="https://achieve.snowflake.com/1a12524b-d04a-4abd-9925-efdf5faf1d07#acc.vmb80ka1"
+                                target="_blank"
+                                style="color: #667eea;">https://achieve.snowflake.com/1a12524b-d04a-4abd-9925-efdf5faf1d07#acc.vmb80ka1</a>
+                        </p>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            I completed the "Hands-On Essentials: Data Warehouse" badge issued by Snowflake, which
+                            included guided practical labs. The workshop focused on foundational data warehousing skills
+                            within the Snowflake platform. I demonstrated the ability to create, edit, and manage
+                            Snowflake tables, file formats, compute resources, and COPY INTO statements, as well as
+                            parse and load CSV and JSON data. The experience simulated real-world scenarios in a
+                            cloud-based data environment.
+                        </p>
+                    </div>
+
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        <p>This hands-on experience significantly deepened my understanding of modern data warehousing
+                            and cloud data platforms. It gave me confidence in using Snowflake to handle structured and
+                            semi-structured data, a skill that is increasingly valuable in data engineering and
+                            analytics roles. The interactive nature of the workshop also reinforced my ability to
+                            troubleshoot data loading and transformation issues independently, further strengthening my
+                            readiness for data-driven roles in industry. I completed this workshop as part of the
+                            training provided by my internship at Digital Twinning Australia.</p>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">📄</div>
+                        <h3 class="activity-title">Activity 4: Central Careers – Resume & Cover Letter Review with
+                            Sandra</h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 March 5, 2025 (Wednesday)</div>
+                        <div class="meta-item">🕒 3:00 PM – 3:45 PM</div>
+                        <div class="meta-item">📍 Virtual – Career Services (Online, Zoom)</div>
+                    </div>
+
+                    <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-images">
+                            <img src="images/Picture6.jpg" alt="...">
+                            <img src="images/Picture7.jpg" alt="...">
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            I attended an online career advice appointment with Sandra from Central Career Services.
+                            During the session, Sandra reviewed my current resume and provided detailed feedback on how
+                            to tailor it for roles in the tech industry. She emphasised the importance of quantifying
+                            achievements, highlighting skills that align with job descriptions, and making my profile
+                            stand out in a competitive field. We also went through strategies for composing an effective
+                            cover letter that demonstrates both my passion for computer science and my fit with
+                            prospective employers.
+                        </p>
+                    </div>
+
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        <p>This appointment gave me a much clearer idea of what employers look for in written
+                            applications. I learned how to showcase both technical and soft skills in my resume and the
+                            significance of customising my cover letter for each opportunity. Applying Sandra's tips, I
+                            feel more confident in presenting myself as a well-rounded and motivated candidate. The
+                            session also motivated me to update my application documents and approach future job
+                            applications more strategically.</p>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">💼</div>
+                        <h3 class="activity-title">Activity 5: Central Careers – Application Support</h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 March 25, 2025 (Tuesday)</div>
+                        <div class="meta-item">🕒 10:30 AM – 11:15 AM</div>
+                        <div class="meta-item">📍 Online Meeting Room</div>
+                    </div>
+
+                    <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-images">
+                            <img src="images/Picture8.jpg" alt="...">
+                            <img src="images/Picture9.jpg" alt="...">
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            I attended a one-on-one online session with Sharon from the University of Adelaide's Central
+                            Career Services team. The focus was on preparing for several upcoming interviews, including
+                            an interview at PwC. She gave specific advice on structuring STAR-model answers and tips for
+                            conveying my motivation and strengths effectively. Sharon also offered guidance on
+                            researching a company's values, using the PwC example, and recommended follow-up strategies
+                            to leave a professional impression post-interview.
+                        </p>
+                    </div>
+
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        <p>This support session sharpened my understanding of what top employers like PwC seek during
+                            the interview process. The personalised advice on managing nerves, researching employers,
+                            and making a positive impact in both virtual and in-person settings has made me feel better
+                            equipped and much more confident to approach interviews in the tech industry.</p>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">🎯</div>
+                        <h3 class="activity-title">Activity 6: Mock Interview Session</h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 March 31, 2025</div>
+                        <div class="meta-item">🕒 15:00 PM – 15:45 AM</div>
+                        <div class="meta-item">📍 Online Meeting Room (Zoom)</div>
+                    </div>
+                    <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-images">
+                            <img src="images/Picture10.jpg" alt="...">
+                            <img src="images/Picture11.jpg" alt="...">
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            Following my initial support session, I had a mock interview with Sharon from Central Career
+                            Services. In this session, I applied Sharon’s previous advice, using the STAR method to
+                            structure my responses and tailoring my answers to highlight both technical and
+                            interpersonal skills. Sharon simulated real interview conditions with a mix of
+                            scenario-based and behavioral questions - some specifically inspired by PwC’s interview
+                            style. She provided in-depth feedback on my communication, body language, and strategies for
+                            articulating my skills.
+                        </p>
+                    </div>
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        This mock interview allowed me to practice and refine the strategies we discussed in the
+                        previous session. Applying the STAR method made my answers more focused and impactful, and I
+                        received valuable feedback on how to improve my delivery and presence in high-pressure
+                        scenarios. Sharon’s insights into what employers are really looking for - beyond just technical
+                        skills - gave me a better sense of how to express my adaptability and genuine enthusiasm for the
+                        role. Overall, I finished the session feeling more self-aware, prepared, and confident to
+                        approach real-world interviews.
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">🗣️</div>
+                        <h3 class="activity-title">Activity 7: English Pronunciation Workshop</h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 May 15, 2025</div>
+                        <div class="meta-item">🕒 4:00 PM – 5:45 PM (Adelaide Time)</div>
+                        <div class="meta-item">📍 Online Meeting Room</div>
+                    </div>
+                    <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-images">
+                            <img src="images/Picture7.png" alt="...">
+                            <img src="images/Picture8.png" alt="...">
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            I attended the 2025 English Pronunciation and Fluency Workshop, presented online by Georgie
+                            Harding (Speech Pathologist and Founder of Speech Active). The workshop focused on improving
+                            English pronunciation, building fluency, and developing effective small talk skills which
+                            are essential for job interviews, networking, and everyday workplace communication. We
+                            reviewed common pronunciation mistakes made by non-native speakers, practiced correcting
+                            them, and shared tools and resources to keep improving outside the session. One highlight
+                            was learning about the Speech Active Online Course launching in August, for which I have
+                            already registered to continue my language development. The Q&A session was especially
+                            useful, as Georgie gave individualised tips and encouragement.
+                        </p>
+                    </div>
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        This workshop gave me practical methods for speaking more clearly and confidently, which I know
+                        is highly valued by Australian employers. I learned specific tips to recognise and overcome my
+                        pronunciation challenges and had the chance to participate actively in real-time exercises. The
+                        workshop, taught by an expert with many years’ experience, motivated me to dedicate more time to
+                        practicing English daily so I can make a great impression at interviews, in group projects, and
+                        in my future workplace.
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">🚀</div>
+                        <h3 class="activity-title">Activity 8: Fleet Space Technologies Tour</h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 April 1, 2025</div>
+                        <div class="meta-item">🕒 4:00 PM – 7:00 PM</div>
+                        <div class="meta-item">📍 14 Myer Ct, Beverly</div>
+                    </div>
+                    <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-images">
+                            <img src="images/Picture9.png" alt="...">>
+                            <img src="images/Picture10.png" alt="...">
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            As part of my internship at Digital Twinning Australia, I attended the Austmine Member Site
+                            Tour at Fleet Space Technologies. The event offered a comprehensive tour of Fleet Space's
+                            cutting-edge facilities, including live demonstrations of innovations in mineral
+                            exploration. The tour included a presentation on the company’s recent advancements,
+                            technologies being deployed in the field, and future directions in partnership and research.
+                            The event concluded with a networking session over drinks and canapés, where I engaged with
+                            Austmine members, industry peers, and technology professionals.
+                        </p>
+                    </div>
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        This experience provided firsthand exposure to the latest developments in space-enabled mineral
+                        exploration and insight into how advanced technology companies operate. Observing Fleet Space’s
+                        culture of innovation and learning about their impact on the resources sector was quite
+                        insightful. The networking session also allowed me to connect with professionals from other
+                        firms, broadening my industry awareness and understanding of potential career pathways within
+                        the technology and mining sectors. Participating as an intern gave me a unique perspective on
+                        the intersection between engineering, digital solutions, and resource exploration.
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">✍️</div>
+                        <h3 class="activity-title">Activity 9: Cover Letter Workshop</h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 May 14, 2025</div>
+                        <div class="meta-item">🕒 05:30PM - 07:00PM</div>
+                        <div class="meta-item">📍 Flinders University City Campus</div>
+                    </div>
+                    <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-images">
+                            <img src="images/Picture16.png" alt="...">
+                            <img src="images/Picture17.png" alt="...">
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            I attended StudyAdelaide’s Career Advantage Workshop, focused on writing effective cover
+                            letters to help job applications stand out. The session covered how to write a cover letter
+                            that grabs recruiters’ attention, emphasising structure, personal tailoring, and key skills
+                            identification. We received step-by-step guidance and practical examples suitable for the
+                            Australian job market. Participation in this workshop also contributes to the Career
+                            Advantage micro-credentials program, helping me work toward career readiness certification.
+                        </p>
+                    </div>
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        This workshop provided actionable techniques for clearly communicating my strengths to employers
+                        and tailoring my application materials for success. I learned strategies for structuring a
+                        compelling cover letter and was shown common mistakes to avoid. The experience boosted my
+                        confidence to apply for jobs knowing my applications will now better reflect my skills and
+                        motivation. Attending this workshop also connected me with other international students building
+                        similar career skills.
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">💻</div>
+                        <h3 class="activity-title">Activity 10: Deloitte Digital Interview</h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 March 24, 2025</div>
+                        <div class="meta-item">🌐 HireVue Platform</div>
+                    </div>
+                    <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-images">
+                            <img src="images/Picture18.png" alt="...">
+                            <img src="images/Picture19.png" alt="...">
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            I completed a digital interview for the Deloitte Australia Graduate. The interview consisted
+                            of five questions, each with a strict time constraint and only one minute to prepare my
+                            responses before recording. The questions covered topics including teamwork,
+                            problem-solving, communication skills, adapting to change, and career motivation. This
+                            challenging format simulated real-world scenarios where concise, clear thinking under time
+                            pressure is essential.
+                        </p>
+                    </div>
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        The digital interview format tested my ability to think quickly and communicate confidently
+                        within tight deadlines. I found the time-limited responses pushed me to organise my thoughts
+                        ahead and focus only on key points, which is a skill highly relevant to professional settings.
+                        Practicing strategies like the STAR (Situation, Task, Action, Result) method beforehand helped
+                        me respond more coherently. This experience also gave me firsthand insight into the digital
+                        recruitment methods used by top firms and highlighted areas—for example, conciseness and stress
+                        management—where I can still improve for future interviews.
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div class="activity-icon">🤖</div>
+                        <h3 class="activity-title">Activity 11: AI Leadership Seminar</h3>
+                    </div>
+                    <div class="activity-meta">
+                        <div class="meta-item">📅 May 16, 2025 </div>
+                        <div class="meta-item">🕒 4:30 PM – 5:30 PM ACST</div>
+                        <div class="meta-item">📍 Online event</div>
+                    </div>
+                    <div class="evidence-label">Evidence:</div>
+                    <div class="evidence-placeholder">
+                        <div class="evidence-images">
+                            <img src="images/Picture20.png" alt="...">
+                            <img src="images/Picture21.png" alt="...">
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="section-label">Summary of Activity:</div>
+                        <p class="activity-summary">
+                            I attended the "AI Leadership and Strategy Seminar" hosted by the Global Institute of
+                            Artificial Intelligence (GIofAI) and presented by Mr. Sandeep Bhalekar. The seminar explored
+                            how AI is transforming leadership roles, providing actionable strategies for integrating AI
+                            into both organisational practice and personal career development. Key topics included
+                            fostering AI literacy, ethical AI adoption, and industry innovation frameworks. The event
+                            concluded with a live Q&A session for attendees.
+                        </p>
+                    </div>
+                    <div class="activity-reflection">
+                        <div class="reflection-label">Reflection:</div>
+                        Participating in this seminar broadened my perspective on how pivotal AI is becoming in
+                        contemporary leadership. I gained practical insights that are directly applicable to shaping an
+                        AI-ready career, especially in adapting quickly to emerging standards in ethics, innovation, and
+                        team leadership.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reflection" class="reflection-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Personal & Professional Reflection</h2>
+
+            <div class="reflection-container">
+                <div class="reflection-card fade-in">
+                    <h3 class="reflection-title">Pre-Reflection</h3>
+                    <p>Before taking part in these activities, I saw myself mainly as someone with technical ability,
+                        work experience but with little interview experience. For this reason, I found it difficult to
+                        talk about my achievements and wasn’t sure how to “sell” myself to employers. I also knew that
+                        things like networking, interviews, and writing job applications would be important for my
+                        career, but I had very little practice and often felt nervous or unsure about doing these
+                        things.
+                    </p>
+                    <br>
+                    <p>As I went through the workshops, careers appointments, industry talks, and my internship, my
+                        perspective started to change. I realised that being successful in IT is not just about
+                        technical knowledge; communication, self-awareness, and the ability to connect with other people
+                        matter just as much. The mock interviews and CV reviews showed me where I needed to improve,
+                        while the tech talks and site tour helped me understand the different directions my career could
+                        take. Now, I feel more balanced in my approach. I am more open to learning from feedback, I know
+                        where to seek help, and I am much more confident talking to professionals and presenting myself
+                        as someone ready for the workplace.
+                    </p>
+
+
+                </div>
+
+                <div class="reflection-card fade-in">
+                    <h3 class="reflection-title">Post-Reflection: Key Experiences</h3>
+
+                    <div class="star-section">
+                        <h4 style="color: #3498db; margin-bottom: 1rem; font-size: 1.4rem;">Experience 1: Mock Interview
+                            Session</h4>
+
+                        <div class="star-title">Situation</div>
+                        <div class="star-content">Earlier this semester, I was getting ready to apply for graduate jobs,
+                            and I was aware that my interview skills were not as strong as they should be. I had done
+                            some interviews before, but mostly in low-pressure settings, and I lacked confidence talking
+                            about myself in a professional environment. The Careers Service at the University offered a
+                            mock interview with Sharon, which seemed like a good way to practise in a realistic
+                            environment.</div>
+
+                        <div class="star-title">Task</div>
+                        <div class="star-content">I needed to prepare properly for the mock interview, making sure I had
+                            examples ready for common questions, especially those using the STAR method. My main aim was
+                            to present myself clearly, show genuine enthusiasm, and get honest feedback about my
+                            strengths and weaknesses. I also wanted to practise adapting to more formal, professional
+                            conversations and see how I handled nerves.</div>
+
+                        <div class="star-title">Action</div>
+                        <div class="star-content">I started by reading over my CV and thinking about situations where
+                            I’d shown teamwork, problem-solving, and leadership. During the mock interview, I did my
+                            best to answer each question using the STAR method and tried to keep my answers relevant and
+                            to the point. After the interview, Sharon went through what I’d done well such as keeping
+                            calm and giving real examples - and what I could improve, like not over-explaining and
+                            making sure each answer had a clear result.
+                        </div>
+
+                        <div class="star-title">Result</div>
+                        <div class="star-content">The session was really helpful because it showed me exactly where I
+                            was going wrong. I realised I could easily lose track of my answers or talk for too long.
+                            Sharon’s feedback was supportive, and it helped me build a plan for future improvement. I
+                            left feeling more comfortable with the interview process and more aware of how to sell
+                            myself in a fair and genuine way. I used what I had learned to prepare for my actual PwC
+                            interview, which went much better than it would have otherwise.</div>
+
+                        <div class="star-title">Learning/Planning</div>
+                        <div class="star-content">From this mock interview, I learned that preparation is key, and that
+                            answering questions clearly makes a big difference. It was also clear that employers really
+                            value you showing your learning and growth, not just talking about what you already know.
+                            Going forward, I will keep practising mock interviews, ask for feedback regularly, and make
+                            sure my examples are always specific and to the point. I now plan to help friends with their
+                            interviews too, as teaching others will help me remember the good habits I have developed.
+                        </div>
+                    </div>
+
+                    <div class="star-section">
+                        <h4 style="color: #3498db; margin-bottom: 1rem; font-size: 1.4rem;">Experience 2: Fleet Space
+                            Technologies Tour
+                        </h4>
+
+                        <div class="star-title">Situation</div>
+                        <div class="star-content">As part of my internship at Digital Twinning Australia, I joined my
+                            colleagues for a site tour of Fleet Space Technologies. Most of the people there were
+                            already working in the technology or mining industry, with years more experience than I
+                            have. The visit was part information session, part networking event, and it was the first
+                            time I had seen an innovative company like Fleet Space up close.</div>
+
+                        <div class="star-title">Task</div>
+                        <div class="star-content">My main aim was to learn more about how a real tech company works,
+                            meet people who work in the field, and see what skills matter in industry settings. I also
+                            wanted to step out of my comfort zone, ask questions directly to the engineers and managers,
+                            and show that I was eager to learn. Joining the networking afterwards was a bit
+                            intimidating, but I knew it was important if I wanted to stand out as an intern.</div>
+
+                        <div class="star-title">Action</div>
+                        <div class="star-content">During the tour, I paid close attention to the presentations and
+                            demonstrations. I made notes and prepared questions about the technology and the company’s
+                            future plans. When I got a chance, I asked about the challenges they face and what skills
+                            they look for in new hires. At the networking event afterwards, I introduced myself to
+                            several people I had not met before, explained what I was studying, and listened to their
+                            stories about getting started in their careers.
+                        </div>
+
+                        <div class="star-title">Result</div>
+                        <div class="star-content">I left the event feeling much more informed about the industry and
+                            what is possible with a technical background like mine. I also realised that people in the
+                            industry are usually happy to talk to students and share advice, which made me feel more
+                            confident about approaching new people in the future. </div>
+
+                        <div class="star-title">Learning/Planning</div>
+                        <div class="star-content">This experience reinforced the importance of stepping outside my
+                            comfort zone. I learned that meaningful professional development occurs through active
+                            engagement, curiosity, and openness to new experiences. Going forward, I commit to regularly
+                            seeking out industry events, networking opportunities, and chances to learn directly from
+                            professionals.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reflection-card fade-in" style="margin-top: 2rem;">
+                <h3 class="reflection-title">Overall Transformation</h3>
+                <p>This semester has fundamentally changed how I view professional development. I've evolved from
+                    focusing solely on technical skills to equally valuing communication, networking, and
+                    self-presentation abilities. These experiences have made me more confident, adaptable, and genuinely
+                    ready for the professional world.</p>
+
+                <p>Moving forward, I'm committed to applying these learnings throughout my career, maintaining the
+                    growth mindset I've developed, and continuing to seek opportunities that challenge me to grow both
+                    personally and professionally.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Professional Development Portfolio. Created for University of Adelaide PPIII Assessment by
+                Hower Pazos.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollIndicator').style.width = scrolled + '%';
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Stagger animation for activity cards
+        const activityCards = document.querySelectorAll('.activity-card');
+        activityCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+
+</html>
